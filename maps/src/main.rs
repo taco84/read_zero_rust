@@ -26,23 +26,20 @@ fn main() {
     }
 
     let mut v = Vec::new();
-    v.push(10);
-    v.push(5);
 
-    let mut s = BTreeSet::new();
-    s.insert(100);
-    s.insert(400);
+    v.push(100);
+    v.push(400);
 
     let it = v.iter().chain(s.iter());
-    for n in it.clone().map(|n| n * 2){
+    for n in it.clone().map(|n| n * 2) {
         println!("{}",n);
     }
 
-    let total = it.clone().fold(0, |acc,x| acc + x);
+    let total = it.clone().fold(0,|acc,x| acc + x);
 
-    let list: LinkedList<_> = it.filter(|n| *n * 2 == 0).collect();
+    let list: LinkedList<_> = it.filter(|n| *n%2 == 0).collect();
 
-    for (n,m) in v.iter().zip(s.iter()) {
-        println!("{} {}",n,m);
+    for(n,m) in v.iter().zip(s.iter()) {
+        println!("{} {}", n, m);
     }
 }
