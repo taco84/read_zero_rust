@@ -1,4 +1,3 @@
-*.lock
-*.toml
-target/
-.vscode/
+**/target/
+Cargo.lock
+**/*.rs.bk
