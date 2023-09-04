@@ -35,9 +35,9 @@ fn main() {
         println!("{}",n);
     }
 
-    let total = it.clone().fold(0,|acc,x| acc + x);
+    let _total = it.clone().fold(0,|acc,x| acc + x);
 
-    let list: LinkedList<_> = it.filter(|n| *n%2 == 0).collect();
+    let _list: LinkedList<_> = it.filter(|n| *n%2 == 0).collect();
 
     for(n,m) in v.iter().zip(s.iter()) {
         println!("{} {}", n, m);
