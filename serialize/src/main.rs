@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use std::{fs::File, io::prelude::*, path::Path};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 enum List<T> {
@@ -39,5 +40,22 @@ fn main() {
     println!("{:?}",list);
 
     let list = rmp_serde::from_slice::<List<i32>>(&msgpack).unwrap();
+    println!("{:?}",list);
+
+    println!("");
+
+    let list = List::new().cons(1).cons(2).cons(3);
+    let yml = serde_yaml::to_string(&list).unwrap();
+
+    let path = Path::new("test.yml");
+    let mut f = File::create(path).unwrap();
+    f.write_all(yml.as_bytes()).unwrap();
+
+    let path = Path::new("test.yml");
+    let mut f = File::open(path).unwrap();
+    let mut yml = String::new();
+    f.read_to_string(&mut yml).unwrap();
+
+    let list = serde_yaml::from_str::<List<i32>>(&yml).unwrap();
     println!("{:?}",list);
 }
